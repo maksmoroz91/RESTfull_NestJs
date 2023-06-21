@@ -10,16 +10,16 @@ import { ApiOperation, ApiTags } from "@nestjs/swagger";
 export class MoviesController {
     constructor(private readonly moviesService: MoviesService) {}
 
-    @ApiOperation({summary: 'Получить все фильмы'})
-    @Get()
-    getAllMovies(): Promise<Movie[]> {
-        return this.moviesService.getAll();
-    }
-
     @ApiOperation({summary: 'Создать фильм'})
     @Post()
     createMovie(@Body() dto: CreateMovieDto): Promise<Movie> {
         return this.moviesService.create(dto);
+    }
+
+    @ApiOperation({summary: 'Получить все фильмы'})
+    @Get()
+    getAllMovies(): Promise<Movie[]> {
+        return this.moviesService.getAll();
     }
 
     @ApiOperation({summary: 'Найти фильм по ID'})
