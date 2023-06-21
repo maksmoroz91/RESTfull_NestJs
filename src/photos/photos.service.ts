@@ -8,10 +8,11 @@ export class PhotosService {
     constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {
     }
 
-    async update(id: string, file: Express.Multer.File) {
+    async update(id: string, file: Express.Multer.File): Promise<Movie> {
         const photoPath = file.path;
         const movie = await this.movieModel.findById(id);
+
         movie.imageUrls.push(photoPath);
-        await movie.save();
+        return movie.save();
     }
 }

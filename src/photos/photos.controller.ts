@@ -3,6 +3,7 @@ import { PhotosService } from './photos.service';
 import { FileInterceptor } from "@nestjs/platform-express";
 import { photoStorage } from "@src/photos/photo.storage";
 import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Movie } from "@src/movies/entities/movie.entity";
 
 
 @ApiTags("Фотографии")
@@ -27,7 +28,7 @@ export class PhotosController {
             },
         },
     })
-    update(@Param('id') id: string, @UploadedFile() file: Express.Multer.File) {
+    update(@Param('id') id: string, @UploadedFile() file: Express.Multer.File): Promise<Movie> {
         return this.photosService.update(id, file);
     }
 
