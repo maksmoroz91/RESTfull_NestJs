@@ -1,9 +1,13 @@
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "@src/app.module";
+import * as express from 'express';
+import { join } from 'path';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+
+    app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
     const config = new DocumentBuilder()
         .setTitle('Тестовое для SpaceCorp')

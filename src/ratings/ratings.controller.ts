@@ -4,7 +4,7 @@ import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Movie } from "@src/movies/entities/movie.entity";
 
 @Controller("ratings")
-@ApiTags("Рейтинг фильмов")
+@ApiTags("Рейтинги")
 export class RatingsController {
     constructor(private readonly ratingsService: RatingsService) {
     }
