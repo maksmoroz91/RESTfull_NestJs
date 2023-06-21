@@ -1,8 +1,8 @@
 import { Controller, Param, Put, UploadedFile, UseInterceptors } from "@nestjs/common";
-import { PhotosService } from './photos.service';
-import { FileInterceptor } from "@nestjs/platform-express";
-import { photoStorage } from "@src/photos/photo.storage";
 import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { PhotosService } from "@src/photos/photos.service";
+import { photoStorage } from "@src/photos/photo.storage";
 import { Movie } from "@src/movies/entities/movie.entity";
 
 
