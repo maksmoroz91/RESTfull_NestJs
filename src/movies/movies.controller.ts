@@ -1,15 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseGuards } from "@nestjs/common";
 import { MoviesService } from "@src/movies/movies.service";
 import { CreateMovieDto } from "@src/movies/dto/create-movie.dto";
 import { UpdateMovieDto } from "@src/movies/dto/update-movie.dto";
 import { Movie } from "@src/movies/entities/movie.entity";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { JwtAuthGuard } from "@src/auth/guards/jwt.guard";
 
 @Controller('movies')
 @ApiTags('Фильмы')
 export class MoviesController {
     constructor(private readonly moviesService: MoviesService) {}
 
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth()
     @ApiOperation({summary: 'Создать фильм'})
     @Post()
     createMovie(@Body() dto: CreateMovieDto): Promise<Movie> {
@@ -28,12 +31,16 @@ export class MoviesController {
         return this.moviesService.getById(id);
     }
 
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth()
     @ApiOperation({summary: 'Обновить фильм по ID'})
     @Put(":id")
     updateMovie(@Param("id") id: string, @Body() dto: UpdateMovieDto): Promise<Movie> {
         return this.moviesService.update(id, dto);
     }
 
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth()
     @ApiOperation({summary: 'Удалить фильм по ID'})
     @Delete(":id")
     removeMovie(@Param("id") id: string): Promise<Movie> {

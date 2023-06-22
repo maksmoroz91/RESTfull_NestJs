@@ -13,7 +13,7 @@ export class Movie {
     rating: number;
 
     @Prop({ default: [] })
-    imageUrls: string[];
+    imagePath: string[];
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);

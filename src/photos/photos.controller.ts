@@ -11,8 +11,8 @@ import { Movie } from "@src/movies/entities/movie.entity";
 export class PhotosController {
     constructor(private readonly photosService: PhotosService) {}
 
-    @ApiOperation({summary: 'Добавление фотографии по ID фильма'})
     @Put(":id")
+    @ApiOperation({summary: 'Добавление фотографии по ID фильма'})
     @UseInterceptors(FileInterceptor('file', {
         storage: photoStorage
     }))
