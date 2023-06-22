@@ -11,6 +11,7 @@ async function bootstrap() {
 
     const config = new DocumentBuilder()
         .setTitle('Тестовое для SpaceCorp')
+        .setDescription('Документация REST API')
         .setVersion('1.0')
         .addBearerAuth()
         .build();

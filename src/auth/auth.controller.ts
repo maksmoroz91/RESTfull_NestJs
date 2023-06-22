@@ -20,7 +20,7 @@ export class AuthController {
     }
 
     @ApiOperation({summary: 'Регистрация'})
-    @Post("/register")
+    @Post("register")
     async register(@Body() dto: CreateUserDto): Promise<User> {
         return this.authService.register(dto);
     }
