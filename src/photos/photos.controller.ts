@@ -7,28 +7,28 @@ import { Movie } from "@src/movies/entities/movie.entity";
 
 
 @ApiTags("Фотографии")
-@Controller('photos')
+@Controller("photos")
 export class PhotosController {
     constructor(private readonly photosService: PhotosService) {}
 
     @Put(":id")
-    @ApiOperation({summary: 'Добавление фотографии по ID фильма'})
-    @UseInterceptors(FileInterceptor('file', {
+    @ApiOperation({summary: "Добавление фотографии по ID фильма"})
+    @UseInterceptors(FileInterceptor("file", {
         storage: photoStorage
     }))
-    @ApiConsumes('multipart/form-data')
+    @ApiConsumes("multipart/form-data")
     @ApiBody({
         schema: {
-            type: 'object',
+            type: "object",
             properties: {
                 file: {
-                    type: 'string',
-                    format: 'binary',
+                    type: "string",
+                    format: "binary",
                 },
             },
         },
     })
-    update(@Param('id') id: string, @UploadedFile() file: Express.Multer.File): Promise<Movie> {
+    update(@Param("id") id: string, @UploadedFile() file: Express.Multer.File): Promise<Movie> {
         return this.photosService.update(id, file);
     }
 

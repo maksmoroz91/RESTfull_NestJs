@@ -12,16 +12,16 @@ export class AuthController {
     }
 
     @UseGuards(LocalAuthGuard)
-    @ApiOperation({summary: 'Аутентификации'})
+    @ApiOperation({summary: "Аутентификация"})
     @Post("login")
     @ApiBody({type: CreateUserDto})
-    async login(@Request() req): Promise<{token: string}> {
-        return this.authService.login(req.user as User);
+    async login(@Request() dto: CreateUserDto): Promise<{token: string}> {
+        return this.authService.login(dto);
     }
 
-    @ApiOperation({summary: 'Регистрация'})
-    @Post("register")
-    async register(@Body() dto: CreateUserDto): Promise<User> {
-        return this.authService.register(dto);
+    @ApiOperation({summary: "Регистрация"})
+    @Post("registration")
+    async registration(@Body() dto: CreateUserDto): Promise<User> {
+        return this.authService.registration(dto);
     }
 }

@@ -9,14 +9,14 @@ const generateName = () => {
 }
 
 const isAllowedExtension = (fileName: string): boolean => {
-    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
     const fileExtName = fileName.split('.').pop().toLowerCase();
     return allowedExtensions.includes(fileExtName);
 };
 
 const normalizeFileName = (req, file, callback) => {
     if (!isAllowedExtension(file.originalname)) {
-        callback(new BadRequestException('Можно загрузить только JPG, JPEG, PNG и GIF.'));
+        callback(new BadRequestException("Можно загрузить только JPG, JPEG, PNG и GIF."));
     } else {
         const fileExtName = file.originalname.split('.').pop();
         callback(null, `${generateName()}.${fileExtName}`);
@@ -24,6 +24,6 @@ const normalizeFileName = (req, file, callback) => {
 };
 
 export const photoStorage = diskStorage({
-    destination: './uploads',
+    destination: "./uploads",
     filename: normalizeFileName,
 })

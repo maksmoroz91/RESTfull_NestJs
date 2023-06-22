@@ -23,7 +23,7 @@ export class MoviesService {
         try {
             return await this.movieModel.findById(id);
         } catch (e) {
-            throw new BadRequestException('Нет фильма с таким ID');
+            throw new BadRequestException("Нет фильма с таким ID");
         }
 
     }
